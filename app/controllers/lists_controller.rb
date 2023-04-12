@@ -1,6 +1,5 @@
 class ListsController < ApplicationController
   def new
-    # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する。
     @list = List.new
   end
 
@@ -9,13 +8,8 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to list_path(@list.id)
     else
-      render :new
+      render :index  #<= new から indexに変更
     end
-    list = List.new(list_params)
-    # 3. データをデータベースに保存するためのsaveメソッド実行
-    list.save
-     # 詳細画面へリダイレクトト
-    redirect_to list_path(list.id)
   end
 
   def index
